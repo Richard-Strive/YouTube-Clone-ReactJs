@@ -1,23 +1,26 @@
 import React from "react";
 // import ReactDom, { render } from "react-dom";
 import { Grid } from "@material-ui/core";
-import youtube from "./api/youtube";
+// import youtube from "./api/youtube";
 
 import { SearchBar } from "./components";
+import axios from "axios";
 
 class App extends React.Component {
   handleSubmit = async (searchTerm) => {
     try {
-      const response = await youtube.get("search", {
-        params: {
-          part: "snippet",
-          maxResults: 5,
-          key: "AIzaSyDb-g7xAyI-YWYS-_LUvqbZNYQD2mb39ys",
-          q: searchTerm,
-        },
-      });
+      const response = await axios.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        {
+          params: {
+            part: "snippet",
+            maxResults: 5,
+            key: "AIzaSyDb-g7xAyI-YWYS-_LUvqbZNYQD2mb39ys",
+            q: searchTerm,
+          },
+        }
+      );
 
-      console.log(youtube);
       console.log(response);
     } catch (error) {
       console.log(error);

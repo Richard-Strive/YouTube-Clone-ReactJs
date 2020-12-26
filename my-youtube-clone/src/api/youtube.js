@@ -1,8 +1,8 @@
-import axios from "axios";
+// import axios from "axios";
 
-export default axios.create({
-  baseUrl: "https://www.googleapis.com/youtube/v3",
-});
+// export default axios.create({
+//   baseUrl: "https://www.googleapis.com/youtube/v3",
+// });
 
 // params: {
 //   part: "snippet",

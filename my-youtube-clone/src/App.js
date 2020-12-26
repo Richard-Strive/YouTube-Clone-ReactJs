@@ -9,6 +9,9 @@ class App extends React.Component {
     video: [],
     selectedVideo: null,
   };
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
+  };
   handleSubmit = async (searchTerm) => {
     try {
       const response = await axios.get(
@@ -32,7 +35,7 @@ class App extends React.Component {
     }
   };
   render() {
-    const { selectedVideo } = this.state;
+    const { selectedVideo, video } = this.state;
     return (
       <Grid justify="center" container spacing={10}>
         <Grid item xs={12}>
@@ -44,7 +47,7 @@ class App extends React.Component {
               <VideoDetails video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
-              <VideoList />
+              <VideoList videos={video} onVideoSelect={this.onVideoSelect} />
             </Grid>
           </Grid>
         </Grid>

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDom, { render } from "react-dom";
 import { Grid } from "@material-ui/core";
-import { SearchBar, VideoDetails } from "./components";
+import { SearchBar, VideoDetails, VideoList } from "./components";
 import axios from "axios";
 
 class App extends React.Component {
@@ -44,7 +44,7 @@ class App extends React.Component {
               <VideoDetails video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
-              {/* <VideoList /> */}
+              <VideoList />
             </Grid>
           </Grid>
         </Grid>

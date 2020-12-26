@@ -1,12 +1,14 @@
 import React from "react";
-// import ReactDom, { render } from "react-dom";
+import ReactDom, { render } from "react-dom";
 import { Grid } from "@material-ui/core";
-// import youtube from "./api/youtube";
-
-import { SearchBar } from "./components";
+import { SearchBar, VideoDetails } from "./components";
 import axios from "axios";
 
 class App extends React.Component {
+  state = {
+    video: [],
+    selectedVideo: null,
+  };
   handleSubmit = async (searchTerm) => {
     try {
       const response = await axios.get(
@@ -21,12 +23,16 @@ class App extends React.Component {
         }
       );
 
-      console.log(response);
+      this.setState({
+        video: response.data.items,
+        selectedVideo: response.data.items[0],
+      });
     } catch (error) {
       console.log(error);
     }
   };
   render() {
+    const { selectedVideo } = this.state;
     return (
       <Grid justify="center" container spacing={10}>
         <Grid item xs={12}>
@@ -35,9 +41,11 @@ class App extends React.Component {
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
             <Grid item xs={8}>
-              {/* <VideoDetails /> */}
+              <VideoDetails video={selectedVideo} />
             </Grid>
-            <Grid item xs={4}></Grid>
+            <Grid item xs={4}>
+              {/* <VideoList /> */}
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

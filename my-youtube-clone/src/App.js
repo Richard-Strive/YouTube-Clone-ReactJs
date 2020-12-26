@@ -12,6 +12,9 @@ class App extends React.Component {
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
   };
+  componentDidMount = () => {
+    this.handleSubmit("Feeling good like a should");
+  };
   handleSubmit = async (searchTerm) => {
     try {
       const response = await axios.get(
